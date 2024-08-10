@@ -25,7 +25,7 @@
  * @since      1.0.0
  * @package    Woo_Masterkit
  * @subpackage Woo_Masterkit/includes
- * @author     Your Name <email@example.com>
+ * @author     Ravien Sewpal <raviensewpal@outlook.com>
  */
 class Woo_Masterkit
 {

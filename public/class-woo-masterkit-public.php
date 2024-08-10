@@ -18,7 +18,7 @@
  *
  * @package    Woo_Masterkit
  * @subpackage Woo_Masterkit/public
- * @author     Your Name <email@example.com>
+ * @author     Ravien Sewpal <raviensewpal@outlook.com>
  */
 class Woo_Masterkit_Public
 {
