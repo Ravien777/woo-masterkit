@@ -64,8 +64,6 @@ class Woo_Masterkit_Admin
 	{
 
 		/**
-		 * This function is provided for demonstration purposes only.
-		 *
 		 * An instance of this class should be passed to the run() function
 		 * defined in Woo_Masterkit_Loader as all of the hooks are defined
 		 * in that particular class.
@@ -87,8 +85,6 @@ class Woo_Masterkit_Admin
 	{
 
 		/**
-		 * This function is provided for demonstration purposes only.
-		 *
 		 * An instance of this class should be passed to the run() function
 		 * defined in Woo_Masterkit_Loader as all of the hooks are defined
 		 * in that particular class.
@@ -99,5 +95,105 @@ class Woo_Masterkit_Admin
 		 */
 
 		wp_enqueue_script($this->woo_masterkit, plugin_dir_url(__FILE__) . 'js/woo-masterkit-admin.js', array('jquery'), $this->version, false);
+	}
+
+	/**
+	 * Add the admin menu and submenu pages for the plugin.
+	 *
+	 * @since    1.0.0
+	 */
+	public function woo_masterkit_add_admin_menu()
+	{
+		add_menu_page(
+			__('Woo MasterKit', 'woo-masterkit'),
+			__('Woo MasterKit', 'woo-masterkit'),
+			'manage_options',
+			'woo-masterkit',
+			array($this, 'woo_masterkit_display_home_page'),
+			'dashicons-admin-tools',
+			6
+		);
+
+		add_submenu_page(
+			'woo-masterkit',
+			__('Home', 'woo-masterkit'),
+			__('Home', 'woo-masterkit'),
+			'manage_options',
+			'woo-masterkit',
+			array($this, 'woo_masterkit_display_home_page')
+		);
+
+		add_submenu_page(
+			'woo-masterkit',
+			__('Bulk Change Price', 'woo-masterkit'),
+			__('Bulk Change Price', 'woo-masterkit'),
+			'manage_options',
+			'woo-masterkit-bulk-change-price',
+			array($this, 'woo_masterkit_display_bulk_change_price_page')
+		);
+
+		add_submenu_page(
+			'woo-masterkit',
+			__('Go Pro', 'woo-masterkit'),
+			__('Go Pro', 'woo-masterkit'),
+			'manage_options',
+			'woo-masterkit-go-pro',
+			array($this, 'woo_masterkit_display_go_pro_page')
+		);
+
+		add_submenu_page(
+			'woo-masterkit',
+			__('Settings', 'woo-masterkit'),
+			__('Settings', 'woo-masterkit'),
+			'manage_options',
+			'woo-masterkit-settings',
+			array($this, 'woo_masterkit_display_settings_page')
+		);
+	}
+
+	/**
+	 * Display the content for the Home submenu page.
+	 *
+	 * @since    1.0.0
+	 */
+	public function woo_masterkit_display_home_page()
+	{
+		echo '<h1>' . __('Hello World - Home', 'woo-masterkit') . '</h1>';
+	}
+
+	/**
+	 * Display the content for the Bulk Change Price submenu page.
+	 *
+	 * @since    1.0.0
+	 */
+	public function woo_masterkit_display_bulk_change_price_page()
+	{
+		echo '<h1>' . __('Hello World - Bulk Change Price', 'woo-masterkit') . '</h1>';
+	}
+
+	/**
+	 * Display the content for the Go Pro submenu page.
+	 *
+	 * @since    1.0.0
+	 */
+	public function woo_masterkit_display_go_pro_page()
+	{
+		echo '<h1>' . __('Go Pro', 'woo-masterkit') . '</h1>';
+		echo '<form method="post" action="">';
+		echo '<label for="woo_masterkit_license_key">' . __('Enter your license key:', 'woo-masterkit') . '</label><br>';
+		echo '<input type="text" id="woo_masterkit_license_key" name="woo_masterkit_license_key" value="" /><br><br>';
+		echo '<input type="submit" value="' . __('Submit Key', 'woo-masterkit') . '" />';
+		echo '<a href="" class="button button-primary">' . __('Purchase Key', 'woo-masterkit') . '</a>';
+		echo '</form>';
+	}
+
+	/**
+	 * Display the content for the Settings submenu page.
+	 *
+	 * @since    1.0.0
+	 */
+	public function woo_masterkit_display_settings_page()
+	{
+		echo '<h1>' . __('Hello World - Settings', 'woo-masterkit') . '</h1>';
 	}
 }
