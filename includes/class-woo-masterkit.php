@@ -103,7 +103,7 @@ class Woo_Masterkit
 
 		/**
 		 * The class responsible for orchestrating the actions and filters of the
-		 * core plugin.
+		 * core plugin. 
 		 */
 		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-woo-masterkit-loader.php';
 
@@ -158,7 +158,13 @@ class Woo_Masterkit
 
 		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
 		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
-		$this->loader->add_action('admin_menu', $plugin_admin, 'woo_masterkit_add_admin_menu'); // This line ensures the menu is added
+
+		// This line ensures the menu is added
+		$this->loader->add_action('admin_menu', $plugin_admin, 'woo_masterkit_add_admin_menu');
+		$this->loader->add_action('wp_ajax_woo_masterkit_search_products', $plugin_admin, 'woo_masterkit_ajax_search_products');
+
+		// Register the form submission handler for the Bulk Change Price page
+		$this->loader->add_action('admin_post_woo_masterkit_bulk_price_change', $plugin_admin, 'woo_masterkit_process_bulk_price_change');
 	}
 
 	/**

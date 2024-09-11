@@ -1,32 +1,30 @@
-(function( $ ) {
-	'use strict';
+(function ($) {
+  "use strict";
 
-	/**
-	 * All of the code for your admin-facing JavaScript source
-	 * should reside in this file.
-	 *
-	 * Note: It has been assumed you will write jQuery code here, so the
-	 * $ function reference has been prepared for usage within the scope
-	 * of this function.
-	 *
-	 * This enables you to define handlers, for when the DOM is ready:
-	 *
-	 * $(function() {
-	 *
-	 * });
-	 *
-	 * When the window is loaded:
-	 *
-	 * $( window ).load(function() {
-	 *
-	 * });
-	 *
-	 * ...and/or other possibilities.
-	 *
-	 * Ideally, it is not considered best practise to attach more than a
-	 * single DOM-ready or window-load handler for a particular page.
-	 * Although scripts in the WordPress core, Plugins and Themes may be
-	 * practising this, we should strive to set a better example in our own work.
-	 */
-
-})( jQuery );
+  jQuery(document).ready(function ($) {
+    // Initialize Select2 for product selection
+    $("#woo_masterkit_product_select").select2({
+      ajax: {
+        url: woo_masterkit_ajax.ajax_url,
+        dataType: "json",
+        delay: 250,
+        data: function (params) {
+          return {
+            q: params.term,
+            action: "woo_masterkit_search_products",
+            nonce: woo_masterkit_ajax.nonce,
+          };
+        },
+        processResults: function (data) {
+          return {
+            results: data,
+          };
+        },
+        cache: true,
+      },
+      minimumInputLength: 2,
+      placeholder: "Select products",
+      allowClear: true,
+    });
+  });
+})(jQuery);
